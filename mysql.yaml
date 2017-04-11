@@ -42,10 +42,27 @@ spec:
             cpu: 1
             memory: 2Gi
         env:
-          #replace with a proper secret handling
-          #add another user?
+          # The mysql image will configure a root password with the value of MYSQL_ROOT_PASSWORD...
           - name: MYSQL_ROOT_PASSWORD
-            value: starbuck
+            valueFrom:
+              secretKeyRef:
+                name: mysql-credentials
+                key: rootpw
+          # ... an initial non-root user with a username of the value of MYSQL_USER ...
+          - name: MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: mysql-credentials
+                key: user
+          # ... and a password of the value of MYSQL_PASSWORD ...
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-credentials
+                key: password
+          # ... and an initial database named with the value of MYSQL_DATABASE (while granting MYSQL_USER superuser access.)
+          - name: MYSQL_DATABASE
+            value: sakila
         livenessProbe:
           tcpSocket:
             port: 3306
@@ -62,13 +79,13 @@ spec:
           claimName: database
 
 ---
-# expose this on mysql.svc.default.cluster to the cluster
-
+# expose this on mysql.default.svc.cluster.local to the cluster
 apiVersion: v1
 kind: Service
 metadata:
   name: mysql
 spec:
+  type: ClusterIP
   ports:
   - port: 3306
     protocol: TCP

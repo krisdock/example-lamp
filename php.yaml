@@ -24,10 +24,18 @@ spec:
             cpu: 100m
             memory: 1Gi
         env:
-          #replace with a proper secret handling
-          #add another user?
-          - name: MYSQL_ROOT_PASSWORD
-            value: starbuck
+          - name: MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: mysql-credentials
+                key: user
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-credentials
+                key: password
+          - name: MYSQL_HOST
+            value: mysql.default.svc.cluster.local
         livenessProbe:
           tcpSocket:
             port: 80
@@ -35,8 +43,6 @@ spec:
         - containerPort: 80
 
 ---
-# load balancer
-
 apiVersion: v1
 kind: Service
 metadata:
