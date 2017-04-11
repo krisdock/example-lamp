@@ -1,0 +1,26 @@
+# Jobs reference https://kubernetes.io/docs/concepts/jobs/run-to-completion-finite-workloads/
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mysql-data-loader-with-timeout
+spec:
+  activeDeadlineSeconds: 100
+  template:
+    metadata:
+      name: mysql-data-loader
+    spec:
+      containers:
+      - name: mysql-data-loader
+        image: mysql
+        #update to execute my bash script instead
+        # data loader bash script:
+        #1. Wait for MySQL to be reachable
+        #2. Check to see if data is already installed
+        #3. Download data from internet
+        #4. Load it up
+        #5. Return success (exit code 0)
+        #Error/time out perhaps
+        #URL to download data is a parameter/env variable?
+        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+      restartPolicy: Never
