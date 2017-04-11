@@ -5,11 +5,7 @@ credentialsFile=/mysql-credentials.cnf
 echo "[client]" > $credentialsFile
 echo "user=root" >> $credentialsFile
 echo "password=starbuck" >> $credentialsFile
-echo "host=localhost" >> $credentialsFile
-
-#install curl
-apt-get -qq update
-apt-get -y install curl
+echo "host=mysql.svc.default.cluster.local" >> $credentialsFile
 
 #initialize DBCOUNT
 DBCOUNT=0

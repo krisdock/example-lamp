@@ -35,7 +35,7 @@ spec:
         - containerPort: 80
 
 ---
-# expose this on web.svc.default.cluster to the cluster
+# load balancer
 
 apiVersion: v1
 kind: Service
@@ -48,27 +48,3 @@ spec:
   selector:
     app: php-dbconnect
   type: LoadBalancer
-
----
-#load balancer
-apiVersion: v1
-kind: Service
-metadata:
-  creationTimestamp: 2017-04-10T23:59:08Z
-  name: web
-  namespace: default
-  resourceVersion: "1608046"
-  selfLink: /api/v1/namespaces/default/services/web
-  uid: af858dd2-1e49-11e7-9bdf-0668dce5fad1
-spec:
-  clusterIP: 10.110.64.240
-  ports:
-  - port: 80
-    protocol: TCP
-    targetPort: 80
-  selector:
-    run: php-dbconnect
-  sessionAffinity: None
-  type: ClusterIP
-status:
-  loadBalancer: {}
