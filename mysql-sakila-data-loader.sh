@@ -20,15 +20,16 @@ DBCOUNT=0
 #fi
 #Output: expression evaluated as true
 
+#Download the sql files
+curl -O https://downloads.mysql.com/docs/sakila-db.tar.gz
+  
+#unpack
+tar -xzf sakila-db.tar.gz
+
 #Does data exist?
 #while the answer to my query is not 997, download and restore the data
 while [ "$DBCOUNT" != "997" ]
 do
-  #Download the sql files
-  curl -O https://downloads.mysql.com/docs/sakila-db.tar.gz
-  
-  #unpack
-  tar -xzf sakila-db.tar.gz
 
   #make sure we're using the mysql-credentials.cnf for connections
   credentialsFile=/mysql-credentials.cnf
