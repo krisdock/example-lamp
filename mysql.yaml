@@ -27,11 +27,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      run: mysql
+      app: mysql
   template:
     metadata:
       labels:
-        run: mysql
+        app: mysql
     spec:
       # deploying MySQL from the default Docker Hub image
       containers:
@@ -90,4 +90,4 @@ spec:
   - port: 3306
     protocol: TCP
   selector:
-    run: mysql
+    app: mysql
