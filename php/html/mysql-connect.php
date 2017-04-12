@@ -5,6 +5,10 @@ try{
                     getenv('MYSQL_USER'),
                     getenv('MYSQL_PASSWORD'),
                     array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+    $result = $dbh->query("show tables");
+    while ($row = $result->fetch(PDO::FETCH_NUM)) {
+        echo($row[0]) . "<br />";
+    }
     die(json_encode(array('outcome' => true)));
 }
 catch(PDOException $ex){
