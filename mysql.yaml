@@ -96,7 +96,7 @@ spec:
         ports:
         # make our mysql pod available within the cluster on port 3306
         - containerPort: 3306
-        # 
+        # attach our persistent disk
         volumeMounts:
         - mountPath: /var/lib/mysql
           # https://kubernetes.io/docs/concepts/storage/volumes/#using-subpath
