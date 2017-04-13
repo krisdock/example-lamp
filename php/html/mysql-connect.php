@@ -7,7 +7,7 @@ try{
     # we use environment variables for our MySQL connection
     # the env variables are MYSQL_HOST, MYSQL_USER, and MYSQL_PASSWORD
     # in our example MYSQL_HOST is mysql.default.svc.cluster.local
-    # MYSQL_USER is phpuser and MYSQL_PASSWORD is userpw
+    # MYSQL_USER is varMyDBUser and MYSQL_PASSWORD is varMyDBPass
     # these env variables are set for our PHP server by Kubernetes when we create the php.yaml file
     # the sensitive data itself is set in a Kubernetes Secret when we create the secrets.yaml file
 
