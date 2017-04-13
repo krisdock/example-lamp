@@ -1,5 +1,18 @@
 <?php
 try{
+    
+    # this is a pretty standard MySQL connection script using pdo_mysql
+    # http://php.net/manual/en/pdo.construct.php
+
+    # we use environment variables for our MySQL connection
+    # the env variables are MYSQL_HOST, MYSQL_USER, and MYSQL_PASSWORD
+    # in our example MYSQL_HOST is mysql.default.svc.cluster.local
+    # MYSQL_USER is phpuser and MYSQL_PASSWORD is userpw
+    # these env variables are set for our PHP server by Kubernetes when we create the php.yaml file
+    # the sensitive data itself is set in a Kubernetes Secret when we create the secrets.yaml file
+
+    # we are using the Sakila sample database https://dev.mysql.com/doc/sakila/en/
+
     $mysql_host = getenv('MYSQL_HOST');
     $dbh = new pdo( "mysql:host=$mysql_host:3306;dbname=sakila",
                     getenv('MYSQL_USER'),
