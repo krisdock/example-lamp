@@ -36,4 +36,12 @@ spec:
         #Error/time out perhaps
         #URL to download data is a parameter/env variable?
         command: ["/tmp/mysql-sakila-data-loader.sh"]
-      restartPolicy: Never
+      # if running /tmp/mysql-sakila-data-loader.sh returns a non-zero exit status
+      # the Job will be considered a failure, and this Job will run again
+      # restartPolicy: OnFailure ensures this Job will keep attempting to load our data
+      # until it completes successfully
+      # so if this Job tries to run before the PHP server is up, or before the MySQL server is up
+      # or before the Secret is created, this Job will keep trying to complete
+      # the mysql-sakila-data-loader.sh script itself has "set -o errexit"
+      # so if any commands the script itself launches fail, the whole script returns nonzero
+      restartPolicy: OnFailure
