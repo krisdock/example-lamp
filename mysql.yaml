@@ -33,6 +33,7 @@ metadata:
   name: mysql
 spec:
   # number of MySQL pods (replicas) to run
+  # increase this number if you need to scale MySQL horizontally
   replicas: 1
   # make replicas of kubernetes objects with the label app: mysql
   selector:
