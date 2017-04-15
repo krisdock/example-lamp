@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# if any commands in this script fail, the whole script returns nonzero
+# which means the Job mysql-data-loader-with-timeout
+# will keep running this script until it completes successfully
 set -o errexit
 set -o pipefail
 set -o nounset
