@@ -27,6 +27,8 @@ spec:
     spec:
       # deploys PHP and Apache and our custom application from the specified Docker Hub image
       containers:
+      # deploys this custom PHP image from Docker Hub
+      # https://hub.docker.com/r/captainshar/php-dbconnect/
       - image: captainshar/php-dbconnect
         # always download a fresh copy of the image, even if it has the same version label
         imagePullPolicy: Always
