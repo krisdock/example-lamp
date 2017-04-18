@@ -1,3 +1,5 @@
+# By Sharon Campbell and Ken Simon for Heptio
+
 # https://docs.docker.com/engine/reference/builder/
 
 # base this image on the PHP image that comes with Apache https://hub.docker.com/_/php/
