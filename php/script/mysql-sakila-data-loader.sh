@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# By Sharon Campbell, Ken Simon, and Joe Beda for Heptio
+
 # if any commands in this script fail, the whole script returns nonzero
 # which means the Job mysql-data-loader-with-timeout
 # will keep running this script until it completes successfully

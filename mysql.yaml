@@ -1,3 +1,4 @@
+# By Sharon Campbell, Ken Simon, and Joe Beda for Heptio
 # create and claim a persistent volume for our pod
 # this works because we enabled cloud-provider=aws
 # so it can create a disk for itself

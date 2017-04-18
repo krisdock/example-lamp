@@ -1,4 +1,5 @@
-#deploy the PHP and Apache container from captainshar/php-dbconnect
+# By Sharon Campbell, Ken Simon, and Joe Beda for Heptio
+#deploy the PHP and Apache container from heptio/example-php-dbconnect
 
 apiVersion: extensions/v1beta1
 # https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
@@ -28,8 +29,8 @@ spec:
       # deploys PHP and Apache and our custom application from the specified Docker Hub image
       containers:
       # deploys this custom PHP image from Docker Hub
-      # https://hub.docker.com/r/captainshar/php-dbconnect/
-      - image: captainshar/php-dbconnect
+      # https://hub.docker.com/r/heptio/example-php-dbconnect/
+      - image: heptio/example-php-dbconnect
         # always download a fresh copy of the image, even if it has the same version label
         imagePullPolicy: Always
         name: php-dbconnect

@@ -1,6 +1,8 @@
 <?php
 try{
     
+    # By Sharon Campbell for Heptio
+
     # this is a pretty standard MySQL connection script using pdo_mysql
     # http://php.net/manual/en/pdo.construct.php
 

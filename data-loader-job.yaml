@@ -1,3 +1,4 @@
+# By Sharon Campbell, Ken Simon, and Joe Beda for Heptio
 # one-time Job that executes the /tmp/mysql-sakila-data-loader.sh script
 # from another container copy of our PHP image
 # this is how we get initial data for our database
@@ -19,13 +20,13 @@ spec:
       containers:
       - name: mysql-data-loader
         # deploys this custom PHP image from Docker Hub
-        # https://hub.docker.com/r/captainshar/php-dbconnect/
+        # https://hub.docker.com/r/heptio/example-php-dbconnect/
         # this is the same PHP image we use to create the PHP Deployment in php.yaml
         # it could be a completely different image, though, if our script was in its own image
         # it's just convenient to have our PHP app and our data loader script packaged together
         # make sure the host image for your script has any utilities the script needs
         # like curl and mysql-client, in our case
-        image: captainshar/php-dbconnect
+        image: heptio/example-php-dbconnect
         # env sets environment variables in the container
         # exactly like environment variables set from the command line
         env:
