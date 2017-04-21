@@ -6,11 +6,15 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: php-dbconnect
+  labels:
+    heptio.com/example: lamp
 # number of PHP pods (replicas) to run
 # increase this number if you need to scale PHP horizontally
 # since we have 3, the LoadBalancer will serve our app from all 3
 spec:
   replicas: 3
+  # The number of old deployments you want to keep around
+  revisionHistoryLimit: 5
   # make replicas of kubernetes objects with the label app: php-dbconnect
   selector:
     matchLabels:
@@ -80,6 +84,8 @@ metadata:
   # the name web here means you can reference the PHP pods
   # using the host web.default.svc.cluster.local from within the cluster
   name: web
+  labels:
+    "heptio.com/example": lamp
 spec:
   ports:
   # make the service available on this port
