@@ -9,6 +9,8 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: mysql-data-loader-with-timeout
+  labels:
+    "heptio.com/example": lamp
 spec:
   # https://kubernetes.io/docs/concepts/jobs/run-to-completion-finite-workloads/#job-termination-and-cleanup
   activeDeadlineSeconds: 100

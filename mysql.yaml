@@ -12,6 +12,8 @@ metadata:
   # the name assigned here for our persistent volume
   # is referenced by the Deployment in volumes: persistentVolumeClaim: claimName
   name: database
+  labels:
+    "heptio.com/example": lamp
   annotations:
     # we want AWS to handle provisioning a volume with sane defaults
     # https://kubernetes.io/docs/concepts/storage/persistent-volumes/#writing-portable-configuration
@@ -32,10 +34,13 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: mysql
+  labels:
+    "heptio.com/example": lamp
 spec:
   # number of MySQL pods (replicas) to run
-  # increase this number if you need to scale MySQL horizontally
   replicas: 1
+  # The number of old deployments you want to keep around
+  revisionHistoryLimit: 5
   # make replicas of kubernetes objects with the label app: mysql
   selector:
     matchLabels:
@@ -126,6 +131,8 @@ metadata:
   # the name mysql here means you can reference the pod
   # using the host mysql.default.svc.cluster.local from within the cluster
   name: mysql
+  labels:
+    "heptio.com/example": lamp
 spec:
   # allows us to set our own internal IP to reference this pod
   # in this case we care about the port
